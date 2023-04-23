@@ -25,6 +25,7 @@ def parse_bio(bio_part):
     if bio_part["person"]["biography"]:
         bio = bio_part["person"]["biography"]['value'].encode('utf-8').replace("\t", " ").replace("\n", " ")
     else: bio = "None"
+    #marian start
     if bio_part["researcher-urls"]:
         researcher_urls = [unicode(u['url']['value']).replace("\t", " ") for u in bio_part["researcher-urls"]["researcher-url"]]
     else: researcher_urls = "None"
@@ -33,10 +34,13 @@ def parse_bio(bio_part):
             country = bio_part["contact-details"]["address"]["country"]["value"].replace("\t", " ")
         else: country = "None"
     else: country = "None"
+    #marian finish
+    #morgan begin
     if bio_part['keywords']:
         keywords = [str(k['value'].encode('utf-8')).replace("\t", " ") for k in bio_part['keywords']['keyword']]
     else: keywords = "None"
     return [first_name, last_name, str(bio), str(researcher_urls), str(country), str(keywords)]
+    #morgan start
 
 def parse(filename):
     with open(filename) as data_file:
