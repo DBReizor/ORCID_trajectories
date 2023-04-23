@@ -15,10 +15,13 @@ JSON_DATA_DIR = "../../data/raw/"
 
 def parse_bio(bio_part):
     first_name, last_name = "None", "None"
+    #done
     if bio_part["person"]["name"]["given-names"]:
         first_name = bio_part["person"]["names"]["given-names"]["value"].encode('utf-8').replace("\t", " ")
+    #done
     if bio_part["person"]["name"]["family-name"]:
         last_name = bio_part["person"]["name"]["family-name"]["value"].encode('utf-8').replace("\t", " ")
+    #done
     if bio_part["person"]["biography"]:
         bio = bio_part["person"]["biography"]['value'].encode('utf-8').replace("\t", " ").replace("\n", " ")
     else: bio = "None"
