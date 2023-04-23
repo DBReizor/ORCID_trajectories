@@ -47,11 +47,11 @@ def parse(filename):
         data = json.load(data_file)
 
         #ID
-        id = str(data["orcid-profile"]["orcid-identifier"]['path'])
+        id = str(data["orcid-identifier"]['path'])
 
         #BIO
-        if data['orcid-profile']['orcid-bio']:
-            bio_values = parse_bio(data['orcid-profile']['orcid-bio'])
+        if data['person']:
+            bio_values = parse_bio(data)
         else:
             bio_values = ["None", "None", "None", "None", "None", "None"]
     return bio_values, id
