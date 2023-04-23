@@ -33,12 +33,11 @@ def parse_bio(bio_part):
             country = bio_part["person"]["addresses"]["address"]["country"]["value"].replace("\t", " ")
         else: country = "None"
     else: country = "None"
-    #morgan begin
-    if bio_part['keywords']:
-        keywords = [str(k['value'].encode('utf-8')).replace("\t", " ") for k in bio_part['keywords']['keyword']]
+    if bio_part["person"]['keywords']: #done
+        keywords = [str(k['value'].encode('utf-8')).replace("\t", " ") for k in bio_part["person"]['keywords']['keyword']]
     else: keywords = "None"
     return [first_name, last_name, str(bio), str(researcher_urls), str(country), str(keywords)]
-    #morgan start
+
 
 def parse(filename):
     with open(filename) as data_file:
